@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
 <title>ردود الحضور · مهاب و ياسمينا</title>
 <link rel="icon" href="assets/images/favicon.png">
 <link rel="stylesheet" href="css/google-fonts.css">
@@ -33,7 +34,7 @@ header .sub{color:var(--muted);font-size:15px}
 .btn{padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--cream);font:inherit;font-size:15px;cursor:pointer;white-space:nowrap}
 .btn:hover{border-color:var(--gold)}
 .btn.on{background:var(--gold);border-color:var(--gold);color:var(--navy)}
-.btn.gold{background:linear-gradient(180deg,#E6C27A,#C9973F);border:0;color:var(--navy);font-weight:700}
+.btn.gold{background:linear-gradient(180deg,#E6C27A,#C9973F);border:0;color:var(--navy);font-weight:700;padding:10px 34px}
 .list{display:grid;gap:10px}
 .item{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:rgba(255,255,255,.03)}
 .item .top{display:flex;align-items:center;gap:10px}
@@ -47,10 +48,11 @@ header .sub{color:var(--muted);font-size:15px}
 .item .del:hover{color:var(--red)}
 .empty{text-align:center;color:var(--muted);padding:30px 10px}
 .status-line{text-align:center;color:var(--muted);font-size:13px;margin-top:14px}
-.login{max-width:420px;margin:40px auto 0;text-align:center}
+.login{max-width:380px;margin:40px auto 0;text-align:center}
 .login p{color:var(--muted);margin:0 0 14px}
-.login input{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--cream);font:inherit;text-align:center;direction:ltr;margin-bottom:10px;outline:none}
-.login .err{color:var(--red);min-height:1.4em;font-size:15px}
+.login input{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--cream);font-family:"Cormorant Garamond",serif;font-size:26px;letter-spacing:.5em;text-align:center;direction:ltr;margin-bottom:10px;outline:none}
+.login input:focus{border-color:var(--gold)}
+.login .err{color:var(--red);min-height:1.4em;font-size:15px;margin-bottom:6px}
 [hidden]{display:none!important}
 @media (max-width:480px){.stat .n{font-size:32px}header h1{font-size:32px}}
 </style>
@@ -65,8 +67,8 @@ header .sub{color:var(--muted);font-size:15px}
   </header>
 
   <form class="panel login" id="login" autocomplete="off">
-    <p>اكتب مفتاح الدخول علشان تشوف الردود</p>
-    <input type="password" id="key" placeholder="مفتاح الدخول" required>
+    <p>اكتب الرقم السري علشان تشوف الردود</p>
+    <input type="password" id="pass" inputmode="numeric" autocomplete="off" maxlength="32" placeholder="••••••" required>
     <div class="err" id="loginErr"></div>
     <button class="btn gold" type="submit">دخول</button>
   </form>
@@ -96,7 +98,8 @@ header .sub{color:var(--muted);font-size:15px}
 </div>
 
 <script>
-/* Same project as the invitation. Reading goes through get_invitation_rsvps(), which only answers with the right key. */
+/* Same project as the invitation. Reading goes through get_invitation_rsvps(), which only answers
+   with the right passcode and locks after repeated wrong tries. */
 var CONFIG = {
   supabaseUrl: "PASTE_SUPABASE_URL",
   anonKey: "PASTE_SUPABASE_ANON_KEY",
@@ -105,7 +108,8 @@ var CONFIG = {
 
 (function () {
   var $ = function (id) { return document.getElementById(id); };
-  var rows = [], filter = "all", key = "", timer = null;
+  var rows = [], filter = "all", code = "", timer = null;
+  var STORE = "rsvp-pass-" + CONFIG.eventSlug;
   var AR_DIGITS = "٠١٢٣٤٥٦٧٨٩";
   function arNum(n) { return String(n).replace(/\d/g, function (d) { return AR_DIGITS[d]; }); }
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
@@ -113,18 +117,18 @@ var CONFIG = {
     try { return new Date(iso).toLocaleString("ar-EG", { day: "numeric", month: "long", hour: "numeric", minute: "2-digit" }); }
     catch (e) { return iso; }
   }
+  // every RPC answers {ok:true,...} or {ok:false,error:"invalid"|"locked"}
   function rpc(fn, args) {
     return fetch(CONFIG.supabaseUrl.replace(/\/$/, "") + "/rest/v1/rpc/" + fn, {
       method: "POST",
       headers: { "apikey": CONFIG.anonKey, "Authorization": "Bearer " + CONFIG.anonKey, "Content-Type": "application/json" },
       body: JSON.stringify(args)
     }).then(function (r) {
-      if (r.ok) return r.status === 204 ? null : r.json();
-      return r.json().catch(function () { return {}; }).then(function (e) {
-        var err = new Error((e && e.message) || ("HTTP " + r.status));
-        err.invalidKey = /invalid key/.test(err.message);
-        throw err;
-      });
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      return r.json();
+    }).then(function (d) {
+      if (!d || !d.ok) { var e = new Error((d && d.error) || "failed"); e.code = d && d.error; throw e; }
+      return d;
     });
   }
 
@@ -150,28 +154,36 @@ var CONFIG = {
 
   function load(quiet) {
     if (!quiet) $("statusLine").textContent = "جاري التحميل…";
-    return rpc("get_invitation_rsvps", { p_slug: CONFIG.eventSlug, p_key: key }).then(function (data) {
-      rows = data || [];
+    return rpc("get_invitation_rsvps", { p_slug: CONFIG.eventSlug, p_passcode: code }).then(function (d) {
+      rows = d.rows || [];
       render();
       $("statusLine").textContent = "آخر تحديث: " + new Date().toLocaleTimeString("ar-EG", { hour: "numeric", minute: "2-digit" }) + " · بيتحدث لوحده كل دقيقة";
     });
   }
 
-  function start(k) {
-    key = k;
+  function showLogin(msg) {
+    clearInterval(timer); rows = []; code = "";
+    try { sessionStorage.removeItem(STORE); } catch (e) {}
+    $("app").hidden = true; $("login").hidden = false;
+    $("loginErr").textContent = msg || ""; $("statusLine").textContent = "";
+    $("pass").value = ""; $("pass").focus();
+  }
+
+  function start(c) {
+    code = c;
     $("loginErr").textContent = "";
     return load().then(function () {
-      try { localStorage.setItem("rsvp-key-" + CONFIG.eventSlug, key); } catch (e) {}
+      try { sessionStorage.setItem(STORE, code); } catch (e) {}
       $("login").hidden = true; $("app").hidden = false;
       clearInterval(timer); timer = setInterval(function () { load(true).catch(function () {}); }, 60000);
     }).catch(function (e) {
-      $("login").hidden = false; $("app").hidden = true;
-      $("loginErr").textContent = e.invalidKey ? "المفتاح غلط" : "تعذّر الاتصال بقاعدة البيانات";
-      $("statusLine").textContent = "";
+      showLogin(e.code === "invalid" ? "الرقم السري غلط" :
+                e.code === "locked" ? "محاولات كتير غلط، جرّب تاني بعد ربع ساعة" :
+                "تعذّر الاتصال بقاعدة البيانات");
     });
   }
 
-  $("login").addEventListener("submit", function (e) { e.preventDefault(); start($("key").value.trim()); });
+  $("login").addEventListener("submit", function (e) { e.preventDefault(); var c = $("pass").value.trim(); if (c) start(c); });
   $("q").addEventListener("input", render);
   document.querySelectorAll(".tabs .btn").forEach(function (b) {
     b.addEventListener("click", function () {
@@ -180,31 +192,34 @@ var CONFIG = {
     });
   });
   $("refresh").addEventListener("click", function () { load().catch(function () { $("statusLine").textContent = "تعذّر التحديث"; }); });
-  $("logout").addEventListener("click", function () {
-    try { localStorage.removeItem("rsvp-key-" + CONFIG.eventSlug); } catch (e) {}
-    clearInterval(timer); rows = []; key = ""; $("key").value = ""; $("app").hidden = true; $("login").hidden = false;
-  });
+  $("logout").addEventListener("click", function () { showLogin(""); });
   $("list").addEventListener("click", function (e) {
     var b = e.target.closest(".del"); if (!b) return;
     var r = rows.filter(function (x) { return x.id === b.getAttribute("data-id"); })[0];
     if (!r || !confirm("حذف رد «" + r.name + "»؟ مش هينفع يرجع.")) return;
-    rpc("delete_invitation_rsvp", { p_slug: CONFIG.eventSlug, p_key: key, p_id: r.id }).then(function () { return load(true); })
+    rpc("delete_invitation_rsvp", { p_slug: CONFIG.eventSlug, p_passcode: code, p_id: r.id }).then(function () { return load(true); })
       .catch(function () { alert("تعذّر الحذف"); });
   });
   $("csv").addEventListener("click", function () {
     var head = ["الاسم", "الحالة", "الرسالة", "اللغة", "الوقت"];
     var lines = [head].concat(rows.map(function (r) {
       return [r.name, r.status === "attending" ? "هيحضر" : "معتذر", r.message || "", r.lang || "", new Date(r.created_at).toLocaleString("en-GB")];
-    })).map(function (cols) { return cols.map(function (c) { return '"' + String(c).replace(/"/g, '""') + '"'; }).join(","); });
+    })).map(function (cols) {
+      return cols.map(function (c) {
+        c = String(c);
+        if (/^[=+\-@\t\r]/.test(c)) c = "'" + c; // stop Excel from running a guest-typed formula
+        return '"' + c.replace(/"/g, '""') + '"';
+      }).join(",");
+    });
     var blob = new Blob(["﻿" + lines.join("\r\n")], { type: "text/csv;charset=utf-8" });
     var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "rsvps-" + CONFIG.eventSlug + ".csv"; a.click();
     setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
   });
 
   if (CONFIG.supabaseUrl.indexOf("http") !== 0) { $("loginErr").textContent = "الصفحة لسه مش متوصلة بـ Supabase"; return; }
-  var urlKey = new URLSearchParams(location.search).get("key");
-  var saved = null; try { saved = localStorage.getItem("rsvp-key-" + CONFIG.eventSlug); } catch (e) {}
-  if (urlKey || saved) start(urlKey || saved);
+  // remembered only until this tab is closed
+  var saved = null; try { saved = sessionStorage.getItem(STORE); } catch (e) {}
+  if (saved) start(saved); else $("pass").focus();
 })();
 </script>
 </body>
