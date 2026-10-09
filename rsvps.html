@@ -141,7 +141,7 @@ var CONFIG = {
     $("list").innerHTML = shown.length ? shown.map(function (r) {
       var yesR = r.status === "attending";
       return '<div class="item"><div class="top"><div class="name">' + esc(r.name) + '</div>' +
-        '<span class="badge ' + r.status + '">' + (yesR ? "هيحضر" : "معتذر") + '</span></div>' +
+        '<span class="badge ' + (yesR ? "attending" : "declined") + '">' + (yesR ? "هيحضر" : "معتذر") + '</span></div>' +
         (r.message ? '<div class="msg">' + esc(r.message) + '</div>' : '') +
         '<div class="meta"><span>' + esc(when(r.created_at)) + '</span><span>' + (r.lang === "en" ? "EN" : "ع") + '</span>' +
         '<button class="del" type="button" data-id="' + esc(r.id) + '">حذف</button></div></div>';
