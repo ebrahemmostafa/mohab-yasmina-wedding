@@ -1121,7 +1121,7 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
         <div class="farha-palace-timeline-move farha-palace-timeline-time-group">
           <div class="farha-palace-timeline-anim farha-palace-timeline-time-anim">
-            <span class="farha-palace-timeline-time" dir="ltr" data-move="ce-3">7:00 PM</span>
+            <span class="farha-palace-timeline-time" dir="ltr" data-move="ce-3">6:00 PM</span>
           </div>
         </div>
 
@@ -1130,7 +1130,7 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
         <div class="farha-palace-timeline-move farha-palace-timeline-event-group">
           <div class="farha-palace-timeline-anim farha-palace-timeline-event-anim">
             <span class="farha-palace-timeline-event" data-move="ce-4">
-              Guest Arrival
+              Guest Entrance
             </span>
           </div>
         </div>
@@ -1144,7 +1144,7 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
         <div class="farha-palace-timeline-move farha-palace-timeline-time-group">
           <div class="farha-palace-timeline-anim farha-palace-timeline-time-anim">
-            <span class="farha-palace-timeline-time" dir="ltr" data-move="ce-5">7:30 PM</span>
+            <span class="farha-palace-timeline-time" dir="ltr" data-move="ce-5">7:00 PM</span>
           </div>
         </div>
 
@@ -1153,7 +1153,7 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
         <div class="farha-palace-timeline-move farha-palace-timeline-event-group">
           <div class="farha-palace-timeline-anim farha-palace-timeline-event-anim">
             <span class="farha-palace-timeline-event" data-move="ce-6">
-              Bride Entrance
+              Bridal Entrance
             </span>
           </div>
         </div>
@@ -1167,7 +1167,7 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
         <div class="farha-palace-timeline-move farha-palace-timeline-time-group">
           <div class="farha-palace-timeline-anim farha-palace-timeline-time-anim">
-            <span class="farha-palace-timeline-time" dir="ltr" data-move="ce-7">8:30 PM</span>
+            <span class="farha-palace-timeline-time" dir="ltr" data-move="ce-7">7:30 PM</span>
           </div>
         </div>
 
@@ -1176,29 +1176,6 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
         <div class="farha-palace-timeline-move farha-palace-timeline-event-group">
           <div class="farha-palace-timeline-anim farha-palace-timeline-event-anim">
             <span class="farha-palace-timeline-event" data-move="ce-8">
-              Dinner
-            </span>
-          </div>
-        </div>
-
-      </div>
-
-
-      
-
-      <div class="farha-palace-timeline-row">
-
-        <div class="farha-palace-timeline-move farha-palace-timeline-time-group">
-          <div class="farha-palace-timeline-anim farha-palace-timeline-time-anim">
-            <span class="farha-palace-timeline-time" dir="ltr" data-move="ce-9">10:00 PM</span>
-          </div>
-        </div>
-
-        <span class="farha-palace-timeline-point"></span>
-
-        <div class="farha-palace-timeline-move farha-palace-timeline-event-group">
-          <div class="farha-palace-timeline-anim farha-palace-timeline-event-anim">
-            <span class="farha-palace-timeline-event" data-move="ce-10">
               First Dance
             </span>
           </div>
@@ -1213,7 +1190,30 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
         <div class="farha-palace-timeline-move farha-palace-timeline-time-group">
           <div class="farha-palace-timeline-anim farha-palace-timeline-time-anim">
-            <span class="farha-palace-timeline-time" dir="ltr" data-move="ce-11">11:00 PM</span>
+            <span class="farha-palace-timeline-time" dir="ltr" data-move="ce-9">8:30 PM</span>
+          </div>
+        </div>
+
+        <span class="farha-palace-timeline-point"></span>
+
+        <div class="farha-palace-timeline-move farha-palace-timeline-event-group">
+          <div class="farha-palace-timeline-anim farha-palace-timeline-event-anim">
+            <span class="farha-palace-timeline-event" data-move="ce-10">
+              Buffet Opening
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+
+      
+
+      <div class="farha-palace-timeline-row">
+
+        <div class="farha-palace-timeline-move farha-palace-timeline-time-group">
+          <div class="farha-palace-timeline-anim farha-palace-timeline-time-anim">
+            <span class="farha-palace-timeline-time" dir="ltr" data-move="ce-11">9:30 PM</span>
           </div>
         </div>
 
@@ -2112,9 +2112,15 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 </div>
   
 <style>
-/* La Villa: on wide screens keep the portrait hero at screen height, centred, so the whole venue shows and it counts as on-screen */
+/* Hero = exactly one screen: the video fills it (cropping the sides on tall phones) and the next section stays below the fold */
+html body #video-1uif1c, html body #video-1uif1c > .lb-inner { padding: 0 !important; height: 100vh !important; min-height: 100vh !important; height: 100svh !important; min-height: 100svh !important; }
+#video-1uif1c > .lb-inner { padding: 0 !important; max-width: none !important; width: 100% !important; }
+#video-1uif1c .lb-video-wrap { transform: none !important; height: 100vh; height: 100svh; max-width: none; border-radius: 0; container-type: inline-size; }
+#video-1uif1c .lb-video { height: 100%; aspect-ratio: auto; max-width: none; }
+#video-1uif1c .lb-video video { height: 100%; object-fit: cover; }
+/* wide screens: keep the portrait frame, centred, at screen height */
 @media (min-aspect-ratio: 3/4) {
-  #video-1uif1c .lb-video-wrap { max-width: calc(100vh * 1080 / 1920); margin-inline: auto; container-type: inline-size; }
+  #video-1uif1c .lb-video-wrap { max-width: calc(100vh * 1080 / 1920); max-width: calc(100svh * 1080 / 1920); margin-inline: auto; }
 }
 </style>
 <script src="js/invite.js" defer=""></script>
