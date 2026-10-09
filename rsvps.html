@@ -1,21 +1,21 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
-<title>ردود الحضور · مهاب و ياسمينا</title>
+<title>RSVPs · Mohab &amp; Yasmina</title>
 <link rel="icon" href="assets/images/favicon.png">
 <link rel="stylesheet" href="css/google-fonts.css">
 <style>
 :root{--navy:#071733;--navy-2:#0d2550;--card:#0b1f45;--gold:#D6A84D;--gold-2:#E6C27A;--cream:#F5EBD6;--muted:#a9b3c7;--green:#6fcf97;--red:#e98a8a;--line:rgba(214,168,77,.35)}
 *{box-sizing:border-box}
-body{margin:0;min-height:100vh;background:radial-gradient(120% 60% at 50% 0%,#0f2a5a 0%,var(--navy) 60%);color:var(--cream);font-family:"Amiri",serif;font-size:17px}
+body{margin:0;min-height:100vh;background:radial-gradient(120% 60% at 50% 0%,#0f2a5a 0%,var(--navy) 60%);color:var(--cream);font-family:"Cormorant Garamond","Amiri",Georgia,serif;font-size:18px}
 .wrap{max-width:760px;margin:0 auto;padding:28px 16px 60px}
 header{text-align:center;margin-bottom:22px}
-header .kicker{color:var(--gold);font-size:15px;opacity:.9}
-header h1{font-family:"Aref Ruqaa",serif;font-weight:400;font-size:38px;margin:4px 0 2px;background:linear-gradient(180deg,#F3D99B,#D6A84D 60%,#B9883A);-webkit-background-clip:text;background-clip:text;color:transparent}
+header .kicker{color:var(--gold);font-size:13px;letter-spacing:.32em;text-transform:uppercase;opacity:.9}
+header h1{font-family:"Great Vibes",cursive;font-weight:400;font-size:48px;margin:4px 0 2px;background:linear-gradient(180deg,#F3D99B,#D6A84D 60%,#B9883A);-webkit-background-clip:text;background-clip:text;color:transparent}
 header .sub{color:var(--muted);font-size:15px}
 .orn{display:flex;align-items:center;justify-content:center;gap:10px;width:170px;margin:12px auto 0}
 .orn i{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
@@ -25,7 +25,7 @@ header .sub{color:var(--muted);font-size:15px}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
 .stat{text-align:center;padding:14px 6px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.03)}
 .stat .n{font-family:"Cormorant Garamond",serif;font-size:38px;line-height:1;color:var(--gold-2)}
-.stat .l{font-size:14px;color:var(--muted);margin-top:6px}
+.stat .l{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:6px}
 .stat.ok .n{color:var(--green)}.stat.no .n{color:var(--red)}
 .tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}
 .tools input[type=search]{flex:1 1 200px;min-width:0;padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--cream);font:inherit;font-size:16px;outline:none}
@@ -54,46 +54,46 @@ header .sub{color:var(--muted);font-size:15px}
 .login input:focus{border-color:var(--gold)}
 .login .err{color:var(--red);min-height:1.4em;font-size:15px;margin-bottom:6px}
 [hidden]{display:none!important}
-@media (max-width:480px){.stat .n{font-size:32px}header h1{font-size:32px}}
+@media (max-width:480px){.stat .n{font-size:32px}header h1{font-size:40px}.stat .l{font-size:11px;letter-spacing:.06em}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <div class="kicker">ردود تأكيد الحضور</div>
-    <h1>مهاب و ياسمينا</h1>
-    <div class="sub">الجمعة ٤ ديسمبر ٢٠٢٦ · فندق لا ڤيلا جراند بلازا</div>
+    <div class="kicker">RSVP Responses</div>
+    <h1>Mohab &amp; Yasmina</h1>
+    <div class="sub">Friday, 4 December 2026 · La Villa Grand Plaza Hotel</div>
     <div class="orn"><i></i><b></b><i></i></div>
   </header>
 
   <form class="panel login" id="login" autocomplete="off">
-    <p>اكتب الرقم السري علشان تشوف الردود</p>
+    <p>Enter the passcode to view the responses</p>
     <input type="password" id="pass" inputmode="numeric" autocomplete="off" maxlength="32" placeholder="••••••" required>
     <div class="err" id="loginErr"></div>
-    <button class="btn gold" type="submit">دخول</button>
+    <button class="btn gold" type="submit">Sign in</button>
   </form>
 
   <main id="app" hidden>
     <div class="stats">
-      <div class="stat"><div class="n" id="sTotal">٠</div><div class="l">إجمالي الردود</div></div>
-      <div class="stat ok"><div class="n" id="sYes">٠</div><div class="l">هيحضروا</div></div>
-      <div class="stat no"><div class="n" id="sNo">٠</div><div class="l">معتذرين</div></div>
+      <div class="stat"><div class="n" id="sTotal">0</div><div class="l">Total</div></div>
+      <div class="stat ok"><div class="n" id="sYes">0</div><div class="l">Attending</div></div>
+      <div class="stat no"><div class="n" id="sNo">0</div><div class="l">Declined</div></div>
     </div>
     <div class="panel">
       <div class="tools">
-        <input type="search" id="q" placeholder="ابحث بالاسم أو الرسالة">
+        <input type="search" id="q" placeholder="Search name or message">
         <div class="tabs">
-          <button class="btn on" data-f="all" type="button">الكل</button>
-          <button class="btn" data-f="attending" type="button">حضور</button>
-          <button class="btn" data-f="declined" type="button">اعتذار</button>
+          <button class="btn on" data-f="all" type="button">All</button>
+          <button class="btn" data-f="attending" type="button">Attending</button>
+          <button class="btn" data-f="declined" type="button">Declined</button>
         </div>
-        <button class="btn" id="csv" type="button">تحميل Excel</button>
-        <button class="btn" id="refresh" type="button">تحديث</button>
+        <button class="btn" id="csv" type="button">Export CSV</button>
+        <button class="btn" id="refresh" type="button">Refresh</button>
       </div>
       <div class="list" id="list"></div>
     </div>
     <div class="status-line" id="statusLine"></div>
-    <div class="status-line"><button class="btn" id="logout" type="button">خروج</button></div>
+    <div class="status-line"><button class="btn" id="logout" type="button">Sign out</button></div>
   </main>
 </div>
 
@@ -110,11 +110,10 @@ var CONFIG = {
   var $ = function (id) { return document.getElementById(id); };
   var rows = [], filter = "all", code = "", timer = null;
   var STORE = "rsvp-pass-" + CONFIG.eventSlug;
-  var AR_DIGITS = "٠١٢٣٤٥٦٧٨٩";
-  function arNum(n) { return String(n).replace(/\d/g, function (d) { return AR_DIGITS[d]; }); }
+  function num(n) { return String(n); }
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
   function when(iso) {
-    try { return new Date(iso).toLocaleString("ar-EG", { day: "numeric", month: "long", hour: "numeric", minute: "2-digit" }); }
+    try { return new Date(iso).toLocaleString("en-GB", { day: "numeric", month: "short", hour: "numeric", minute: "2-digit", hour12: true }); }
     catch (e) { return iso; }
   }
   // every RPC answers {ok:true,...} or {ok:false,error:"invalid"|"locked"}
@@ -134,9 +133,9 @@ var CONFIG = {
 
   function render() {
     var yes = rows.filter(function (r) { return r.status === "attending"; }).length;
-    $("sTotal").textContent = arNum(rows.length);
-    $("sYes").textContent = arNum(yes);
-    $("sNo").textContent = arNum(rows.length - yes);
+    $("sTotal").textContent = num(rows.length);
+    $("sYes").textContent = num(yes);
+    $("sNo").textContent = num(rows.length - yes);
     var q = $("q").value.trim().toLowerCase();
     var shown = rows.filter(function (r) {
       if (filter !== "all" && r.status !== filter) return false;
@@ -145,19 +144,19 @@ var CONFIG = {
     $("list").innerHTML = shown.length ? shown.map(function (r) {
       var yesR = r.status === "attending";
       return '<div class="item"><div class="top"><div class="name">' + esc(r.name) + '</div>' +
-        '<span class="badge ' + (yesR ? "attending" : "declined") + '">' + (yesR ? "هيحضر" : "معتذر") + '</span></div>' +
+        '<span class="badge ' + (yesR ? "attending" : "declined") + '">' + (yesR ? "Attending" : "Declined") + '</span></div>' +
         (r.message ? '<div class="msg">' + esc(r.message) + '</div>' : '') +
-        '<div class="meta"><span>' + esc(when(r.created_at)) + '</span><span>' + (r.lang === "en" ? "EN" : "ع") + '</span>' +
-        '<button class="del" type="button" data-id="' + esc(r.id) + '">حذف</button></div></div>';
-    }).join("") : '<div class="empty">' + (rows.length ? "مفيش نتائج للبحث ده" : "لسه مفيش ردود") + '</div>';
+        '<div class="meta"><span>' + esc(when(r.created_at)) + '</span><span>' + (r.lang === "en" ? "EN" : "AR") + '</span>' +
+        '<button class="del" type="button" data-id="' + esc(r.id) + '">Delete</button></div></div>';
+    }).join("") : '<div class="empty">' + (rows.length ? "No matches" : "No responses yet") + '</div>';
   }
 
   function load(quiet) {
-    if (!quiet) $("statusLine").textContent = "جاري التحميل…";
+    if (!quiet) $("statusLine").textContent = "Loading…";
     return rpc("get_invitation_rsvps", { p_slug: CONFIG.eventSlug, p_passcode: code }).then(function (d) {
       rows = d.rows || [];
       render();
-      $("statusLine").textContent = "آخر تحديث: " + new Date().toLocaleTimeString("ar-EG", { hour: "numeric", minute: "2-digit" }) + " · بيتحدث لوحده كل دقيقة";
+      $("statusLine").textContent = "Last updated " + new Date().toLocaleTimeString("en-GB", { hour: "numeric", minute: "2-digit", hour12: true }) + " · refreshes every minute";
     });
   }
 
@@ -177,9 +176,9 @@ var CONFIG = {
       $("login").hidden = true; $("app").hidden = false;
       clearInterval(timer); timer = setInterval(function () { load(true).catch(function () {}); }, 60000);
     }).catch(function (e) {
-      showLogin(e.code === "invalid" ? "الرقم السري غلط" :
-                e.code === "locked" ? "محاولات كتير غلط، جرّب تاني بعد ربع ساعة" :
-                "تعذّر الاتصال بقاعدة البيانات");
+      showLogin(e.code === "invalid" ? "Wrong passcode" :
+                e.code === "locked" ? "Too many wrong attempts. Try again in 15 minutes." :
+                "Couldn't reach the database");
     });
   }
 
@@ -191,19 +190,19 @@ var CONFIG = {
       filter = b.getAttribute("data-f"); render();
     });
   });
-  $("refresh").addEventListener("click", function () { load().catch(function () { $("statusLine").textContent = "تعذّر التحديث"; }); });
+  $("refresh").addEventListener("click", function () { load().catch(function () { $("statusLine").textContent = "Couldn't refresh"; }); });
   $("logout").addEventListener("click", function () { showLogin(""); });
   $("list").addEventListener("click", function (e) {
     var b = e.target.closest(".del"); if (!b) return;
     var r = rows.filter(function (x) { return x.id === b.getAttribute("data-id"); })[0];
-    if (!r || !confirm("حذف رد «" + r.name + "»؟ مش هينفع يرجع.")) return;
+    if (!r || !confirm("Delete the response from \"" + r.name + "\"? This can't be undone.")) return;
     rpc("delete_invitation_rsvp", { p_slug: CONFIG.eventSlug, p_passcode: code, p_id: r.id }).then(function () { return load(true); })
-      .catch(function () { alert("تعذّر الحذف"); });
+      .catch(function () { alert("Couldn't delete"); });
   });
   $("csv").addEventListener("click", function () {
-    var head = ["الاسم", "الحالة", "الرسالة", "اللغة", "الوقت"];
+    var head = ["Name", "Status", "Message", "Language", "Time"];
     var lines = [head].concat(rows.map(function (r) {
-      return [r.name, r.status === "attending" ? "هيحضر" : "معتذر", r.message || "", r.lang || "", new Date(r.created_at).toLocaleString("en-GB")];
+      return [r.name, r.status === "attending" ? "Attending" : "Declined", r.message || "", r.lang || "", new Date(r.created_at).toLocaleString("en-GB")];
     })).map(function (cols) {
       return cols.map(function (c) {
         c = String(c);
@@ -216,7 +215,7 @@ var CONFIG = {
     setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
   });
 
-  if (CONFIG.supabaseUrl.indexOf("http") !== 0) { $("loginErr").textContent = "الصفحة لسه مش متوصلة بـ Supabase"; return; }
+  if (CONFIG.supabaseUrl.indexOf("http") !== 0) { $("loginErr").textContent = "This page is not connected to Supabase yet"; return; }
   // remembered only until this tab is closed
   var saved = null; try { saved = sessionStorage.getItem(STORE); } catch (e) {}
   if (saved) start(saved); else $("pass").focus();
