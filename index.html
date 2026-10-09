@@ -128,6 +128,106 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
 
 </section>
+<section id="invite-ann" class="lb" style="--block-bg:#071733">
+<style>
+#invite-ann{background:radial-gradient(120% 70% at 50% 0%,#0d2550 0%,#071733 60%);padding:60px 18px 34px;text-align:center;color:#EEE1C5}
+#invite-ann .ann-card{position:relative;max-width:440px;margin:0 auto;padding:38px 22px 34px;border:1px solid rgba(214,168,77,.55);border-radius:20px;background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0));box-shadow:0 18px 50px rgba(0,0,0,.35);opacity:0;transform:translateY(22px);transition:opacity 1.1s ease,transform 1.1s ease}
+#invite-ann .ann-card.is-in{opacity:1;transform:none}
+#invite-ann .ann-card::before{content:"";position:absolute;inset:8px;border:1px solid rgba(214,168,77,.25);border-radius:14px;pointer-events:none}
+#invite-ann .ann-corner{position:absolute;width:26px;height:26px;border-color:#D6A84D;border-style:solid;opacity:.9}
+#invite-ann .ann-corner.tl{top:-1px;left:-1px;border-width:2px 0 0 2px;border-top-left-radius:20px}
+#invite-ann .ann-corner.tr{top:-1px;right:-1px;border-width:2px 2px 0 0;border-top-right-radius:20px}
+#invite-ann .ann-corner.bl{bottom:-1px;left:-1px;border-width:0 0 2px 2px;border-bottom-left-radius:20px}
+#invite-ann .ann-corner.br{bottom:-1px;right:-1px;border-width:0 2px 2px 0;border-bottom-right-radius:20px}
+#invite-ann .ann-bism{font-family:"AREF","Aref Ruqaa",serif;font-size:30px;color:#D6A84D;line-height:1.5}
+#invite-ann .ann-verse{font-family:"Amiri",serif;font-size:18px;line-height:2.05;margin:10px auto 2px;max-width:340px;color:#F5EBD6}
+#invite-ann .ann-src{font-family:"Amiri",serif;font-size:13px;color:#D6A84D;opacity:.85}
+#invite-ann .ann-orn{display:flex;align-items:center;justify-content:center;gap:10px;margin:22px auto;width:170px}
+#invite-ann .ann-orn i{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(214,168,77,.8))}
+#invite-ann .ann-orn i:last-child{background:linear-gradient(90deg,rgba(214,168,77,.8),transparent)}
+#invite-ann .ann-orn b{width:7px;height:7px;border:1px solid #D6A84D;transform:rotate(45deg)}
+#invite-ann .ann-hosts{font-size:19px;line-height:1.9}
+#invite-ann .ann-host{display:block;font-size:23px;color:#E6C27A}
+#invite-ann .ann-lead{margin-top:8px;font-size:18px;opacity:.95}
+#invite-ann .ann-couple{margin:22px 0 4px}
+#invite-ann .ann-role{display:block;font-size:15px;color:#D6A84D;opacity:.9;margin-bottom:2px}
+#invite-ann .ann-name{display:block;font-size:31px;line-height:1.45;background:linear-gradient(180deg,#F3D99B 0%,#D6A84D 55%,#B9883A 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+#invite-ann .ann-and{display:block;margin:6px 0;font-size:26px;color:#EEE1C5}
+#invite-ann .ann-when{font-size:17px;line-height:2;margin-top:4px}
+#invite-ann .ann-when strong{color:#E6C27A;font-weight:700}
+#invite-ann .ann-close{margin-top:14px;font-size:20px;color:#D6A84D}
+#invite-ann [lang="ar"]{direction:rtl;font-family:"Amiri",serif}
+#invite-ann [lang="ar"] .ann-host,#invite-ann [lang="ar"] .ann-name,#invite-ann [lang="ar"] .ann-close{font-family:"Aref Ruqaa",serif}
+#invite-ann [lang="ar"] .ann-and{font-family:"DIWANY","Aref Ruqaa",serif}
+#invite-ann [lang="en"]{font-family:"Cormorant Garamond",Georgia,serif}
+#invite-ann [lang="en"] .ann-name{font-family:"Great Vibes",cursive;font-size:38px;line-height:1.3}
+#invite-ann [lang="en"] .ann-and{font-family:"Great Vibes",cursive}
+#invite-ann [lang="en"] .ann-host{font-size:21px;letter-spacing:.06em}
+#invite-ann [lang="en"] .ann-role,#invite-ann [lang="en"] .ann-lead{letter-spacing:.12em;text-transform:uppercase;font-size:13px}
+#invite-ann [lang="en"] .ann-close{font-style:italic}
+html:not(.lang-ar) #invite-ann .ann-body[lang="ar"],html.lang-ar #invite-ann .ann-body[lang="en"]{display:none}
+</style>
+  <div class="ann-card">
+    <span class="ann-corner tl"></span><span class="ann-corner tr"></span><span class="ann-corner bl"></span><span class="ann-corner br"></span>
+    <div class="ann-bism" lang="ar">بسم الله الرحمن الرحيم</div>
+    <p class="ann-verse" lang="ar">﴿وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً﴾</p>
+    <div class="ann-src" lang="ar">سورة الروم – آية ٢١</div>
+    <div class="ann-orn"><i></i><b></b><i></i></div>
+
+    <div class="ann-body" lang="ar">
+      <div class="ann-hosts">
+        يتشرف
+        <span class="ann-host">المستشار / هاني هلال</span>
+        و
+        <span class="ann-host">الباشمهندس / شريف الطوخي</span>
+        <div class="ann-lead">بدعوة سيادتكم لحضور حفل زفاف</div>
+      </div>
+      <div class="ann-couple">
+        <span class="ann-role">نجله</span>
+        <span class="ann-name">المستشار / مهاب هاني هلال</span>
+        <span class="ann-and">على</span>
+        <span class="ann-role">كريمته</span>
+        <span class="ann-name">الدكتورة / ياسمينا شريف</span>
+      </div>
+      <div class="ann-orn"><i></i><b></b><i></i></div>
+      <div class="ann-when">
+        وذلك بمشيئة الله تعالى يوم <strong>الجمعة ٤ ديسمبر ٢٠٢٦</strong><br>
+        في تمام الساعة <strong>السادسة مساءً</strong><br>
+        بفندق <strong>لا ڤيلا جراند بلازا</strong>
+      </div>
+      <div class="ann-close">وبحضوركم تكتمل فرحتنا</div>
+    </div>
+
+    <div class="ann-body" lang="en">
+      <div class="ann-hosts">
+        <span class="ann-host">Counselor Hany Helal</span>
+        &amp;
+        <span class="ann-host">Eng. Sherif El-Toukhy</span>
+        <div class="ann-lead">request the pleasure of your company<br>at the wedding of their children</div>
+      </div>
+      <div class="ann-couple">
+        <span class="ann-name">Counselor Mohab Hany Helal</span>
+        <span class="ann-and">&amp;</span>
+        <span class="ann-name">Dr. Yasmina Sherif</span>
+      </div>
+      <div class="ann-orn"><i></i><b></b><i></i></div>
+      <div class="ann-when">
+        <strong>Friday, 4 December 2026</strong><br>
+        at <strong>six o'clock</strong> in the evening<br>
+        <strong>La Villa Grand Plaza Hotel</strong>
+      </div>
+      <div class="ann-close">Your presence will complete our joy</div>
+    </div>
+  </div>
+<script>
+(function () {
+  var card = document.querySelector('#invite-ann .ann-card');
+  if (!('IntersectionObserver' in window)) { card.classList.add('is-in'); return; }
+  var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { card.classList.add('is-in'); io.disconnect(); } }, { threshold: .12 });
+  io.observe(card);
+})();
+</script>
+</section>
 <section id="text-mztyzk" class="lb lb--text lb--w-normal lb-anim lb-anim--fade is-in" style="--block-bg: #071733; --block-overlay: 0; --block-pt: clamp(6.0px, 1.389cqw, 10.0px); --block-pb: 0px; --block-radius: 0px; --block-align: center; --block-flex: center; height: auto; min-height: 0px;" data-block="text-mztyzk" data-block-type="text">
 
 <div class="lb-inner">
@@ -2222,4 +2322,122 @@ document.addEventListener("lb:intro-open", function () {
 
 
 
-<button type="button" class="lb-music" aria-label="تشغيل الموسيقى">♪</button><button type="button" class="lb-autoscroll" hidden=""><svg class="i-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5h3.4v14H7zM13.6 5H17v14h-3.4z"></path></svg><svg class="i-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.2v13.6L19 12 8 5.2Z"></path></svg></button></body></html>
+<button type="button" class="lb-music" aria-label="تشغيل الموسيقى">♪</button><button type="button" class="lb-autoscroll" hidden=""><svg class="i-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5h3.4v14H7zM13.6 5H17v14h-3.4z"></path></svg><svg class="i-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.2v13.6L19 12 8 5.2Z"></path></svg></button><button type="button" id="lang-toggle" aria-label="Switch language">العربية</button>
+<style>
+#lang-toggle{position:fixed;top:max(14px,env(safe-area-inset-top));right:14px;z-index:2147483000;padding:7px 16px 8px;border-radius:999px;background:rgba(7,23,51,.72);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(214,168,77,.65);color:#E6C27A;font-family:"Amiri",serif;font-size:16px;line-height:1.2;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.3)}
+html.lang-ar #lang-toggle{font-family:"Cormorant Garamond",Georgia,serif;font-size:15px;letter-spacing:.14em}
+/* Arabic: connected script needs no letter-spacing or caps; direction follows the text itself */
+html.lang-ar .ar-txt{font-family:"Amiri",serif!important;letter-spacing:0!important;text-transform:none!important;unicode-bidi:plaintext;font-style:normal!important}
+html.lang-ar .ar-txt.ar-deco{font-family:"Aref Ruqaa",serif!important}
+html.lang-ar .ar-txt.ar-bold{font-weight:700!important}
+html.lang-ar .lb-video-text.ar-txt{line-height:1.25}
+html.lang-ar .lb-video-text.ar-txt[data-section-text-index="4"]{font-family:"Amiri",serif!important;font-size:clamp(26px,7.4cqw,54px)!important;--video-text-y:-22.3%!important}
+html.lang-ar .lb-video-text.ar-txt[data-section-text-index="2"]{font-size:clamp(30px,8cqw,60px)!important;--video-text-y:-27%!important}
+</style>
+<script>
+(function () {
+  var AR = {
+    "TAP TO OPEN": "اضغط لفتح الدعوة",
+    "The Wedding of": "حفل زفاف",
+    // positions are left/right on screen: swap so Arabic reads right-to-left as مهاب و ياسمينا
+    "Mohab": "ياسمينا",
+    "Yasmina": "مهاب",
+    "&": "و",
+    "04.12.2026": "٤ ديسمبر ٢٠٢٦",
+    "OUR STORY": "حكايتنا",
+    "Written in the Stars": "مكتوبة في النجوم",
+    "Some stories begin with a moment.": "بعض الحكايات تبدأ بلحظة،",
+    "Ours began with a feeling that became forever.": "وحكايتنا بدأت بإحساس صار عمراً كاملاً.",
+    "OUR MOMENTS": "لحظاتنا",
+    "Little moments, one forever.": "لحظات صغيرة… وعمرٌ واحد",
+    "SAVE THE DATE": "احفظوا الموعد",
+    "04": "٤",
+    "DECEMBER": "ديسمبر",
+    "2026": "٢٠٢٦",
+    "A beautiful day to begin forever.": "يومٌ جميل نبدأ فيه العمر كله.",
+    "COUNTDOWN": "العد التنازلي",
+    "Until We Say": "باقي على",
+    "I DO": "يوم العمر",
+    "DAYS": "يوم",
+    "HOURS": "ساعة",
+    "MINUTES": "دقيقة",
+    "SECONDS": "ثانية",
+    "Every second brings us closer to forever.": "كل ثانية تقرّبنا من حلمنا.",
+    "WEDDING TIMELINE": "برنامج الحفل",
+    "6:00 PM": "٦:٠٠ مساءً",
+    "7:00 PM": "٧:٠٠ مساءً",
+    "7:30 PM": "٧:٣٠ مساءً",
+    "8:30 PM": "٨:٣٠ مساءً",
+    "9:30 PM": "٩:٣٠ مساءً",
+    "Guest Entrance": "استقبال الضيوف",
+    "Bridal Entrance": "دخول العروسين",
+    "First Dance": "الرقصة الأولى",
+    "Buffet Opening": "افتتاح البوفيه",
+    "Let the Celebration Begin": "ولتبدأ الاحتفالات",
+    "A night to remember, a story to treasure forever.": "ليلةٌ لا تُنسى، وحكايةٌ نحتفظ بها للأبد.",
+    "LOCATION": "مكان الحفل",
+    "LA VILLA GRAND PLAZA HOTEL": "فندق لا ڤيلا جراند بلازا",
+    "Friday · 6:00 PM": "الجمعة · السادسة مساءً",
+    "A beautiful place for our unforgettable night.": "مكانٌ جميل لليلتنا التي لا تُنسى.",
+    "OPEN LOCATION": "افتح الموقع على الخريطة",
+    "We can’t wait to celebrate this beautiful night with you.": "ننتظركم بشوق لنحتفل معاً بهذه الليلة الجميلة.",
+    "RSVP": "تأكيد الحضور",
+    "YOUR NAME": "الاسم",
+    "WILL YOU BE ATTENDING OUR DAY?": "هل ستشاركوننا فرحتنا؟",
+    "YES": "نعم، بكل سرور",
+    "NO": "للأسف، لن أتمكن",
+    "WRITE YOUR CONGRATULATIONS": "اكتب تهنئتك",
+    "SEND": "إرسال",
+    "THANK YOU": "شكراً لكم",
+    "Thank you for being part of our special day.": "شكراً لكونكم جزءاً من يومنا المميز.",
+    "Mohab & Yasmina": "مهاب و ياسمينا",
+    "04 · 12 · 2026": "٤ ديسمبر ٢٠٢٦"
+  };
+  var DECO = '.lb-video-text,[class*="script"],[class*="ido"],[class*="until"],[class*="thanks-names"],[class*="venue"]';
+  var BOLD = '[class*="title"],[class*="kicker"],.lb-heading,.g-title,[class*="label"],[class*="month"]';
+  var TITLES = { en: document.title, ar: "دعوة زفاف مهاب و ياسمينا · ٤ ديسمبر ٢٠٢٦" };
+  var nodes = null;
+  function norm(t) { return t.replace(/\s+/g, " ").trim(); }
+  function collect() {
+    nodes = [];
+    var w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, { acceptNode: function (n) {
+      var p = n.parentElement;
+      if (!p || p.closest("script,style,noscript,svg,#invite-ann,#lang-toggle")) return NodeFilter.FILTER_REJECT;
+      return AR.hasOwnProperty(norm(n.nodeValue)) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+    } });
+    while (w.nextNode()) {
+      var n = w.currentNode, v = n.nodeValue;
+      nodes.push({ n: n, en: v, ar: v.match(/^\s*/)[0] + AR[norm(v)] + v.match(/\s*$/)[0] });
+    }
+  }
+  var btn = document.getElementById("lang-toggle");
+  function apply(lang) {
+    if (!nodes) collect();
+    var ar = lang === "ar";
+    document.documentElement.classList.toggle("lang-ar", ar);
+    document.documentElement.setAttribute("lang", ar ? "ar" : "en");
+    nodes.forEach(function (o) {
+      o.n.nodeValue = ar ? o.ar : o.en;
+      var p = o.n.parentElement; if (!p) return;
+      p.classList.toggle("ar-txt", ar);
+      p.classList.toggle("ar-deco", ar && p.matches(DECO));
+      p.classList.toggle("ar-bold", ar && p.matches(BOLD));
+    });
+    document.title = ar ? TITLES.ar : TITLES.en;
+    btn.textContent = ar ? "English" : "العربية";
+    try { localStorage.setItem("invite-lang", lang); } catch (e) {}
+  }
+  var current = "en";
+  try { current = localStorage.getItem("invite-lang") || "en"; } catch (e) {}
+  var q = new URLSearchParams(location.search).get("lang");
+  if (q === "ar" || q === "en") current = q;
+  btn.addEventListener("click", function (e) {
+    e.stopPropagation(); // don't open the envelope underneath
+    current = current === "ar" ? "en" : "ar";
+    apply(current);
+  });
+  function start() { if (current === "ar") apply("ar"); }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start();
+})();
+</script>
+</body></html>
