@@ -1137,7 +1137,8 @@
             var body = new FormData(form);
             body.set("lang", isEn() ? "en" : "ar");
 
-            fetch(form.action, {
+            /* الصفحة ممكن تعرّف ‎window.__rsvpSend‎ (مثلاً Supabase) وترجّع ‎{ok}‎ بنفس الشكل */
+            (window.__rsvpSend ? window.__rsvpSend(body) : fetch(form.action, {
                     method: "POST",
                     body: body,
                     headers: {
@@ -1151,7 +1152,7 @@
                             ok: r.ok
                         };
                     });
-                })
+                }))
                 .then(function(data) {
                     if (data && data.ok) {
                         /* رسالة السيرفر عربي والصفحة إنجليزي (ترجمة ناقصة)؟ نسيب
